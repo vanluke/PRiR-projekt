@@ -15,7 +15,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	Reader reader;
 	try {
-		reader.read_files("c:/test");
+		reader.read_files("c:\\test");
 	}
 	catch (...) {
 		cout << "Error" << endl;
