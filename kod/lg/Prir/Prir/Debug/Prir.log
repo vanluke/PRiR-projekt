@@ -1,0 +1,16 @@
+﻿Build started 12/30/2014 08:03:42.
+     1>Project "D:\New folder\prir\PRiR-projekt\kod\lg\Prir\Prir\Prir.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"D:\New folder\prir\PRiR-projekt\kod\lg\Prir\packages\dirent.1.13.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /Od /Oy- /D HAS_DIRENT /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\Prir.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Prir.cpp
+         Prir.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\New folder\prir\PRiR-projekt\kod\lg\Prir\Debug\Prir.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\New folder\prir\PRiR-projekt\kod\lg\Prir\Debug\Prir.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\New folder\prir\PRiR-projekt\kod\lg\Prir\Debug\Prir.lib" /MACHINE:X86 Debug\KarpRabin.obj
+         Debug\Prir.obj
+         Debug\Reader.obj
+         Debug\stdafx.obj
+         Prir.vcxproj -> D:\New folder\prir\PRiR-projekt\kod\lg\Prir\Debug\Prir.exe
+     1>Done Building Project "D:\New folder\prir\PRiR-projekt\kod\lg\Prir\Prir\Prir.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.18
