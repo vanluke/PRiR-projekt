@@ -4,8 +4,8 @@
 #include <string>
 #include <map>
 #include <fcntl.h>
- #include <sys/types.h>
- #include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 
 using namespace std;
@@ -21,11 +21,7 @@ Reader::~Reader()
 map<string, string> Reader::read_files(std::string folderPath) {
 	map<string, string> retval;
 
-	ifstream fin;
-	
 	string filepath;
-	
-	string content;
 	
 	DIR *dp;
 	
@@ -46,19 +42,21 @@ map<string, string> Reader::read_files(std::string folderPath) {
 			continue;
 		}
 
-		fin.open(filepath.c_str());
-
-		if (fin >> content) {
-			retval[dirp->d_name] = content;
-		}
-			
-		fin.close();
+		retval[dirp->d_name] = filepath.c_str();		
 	}
 
 	closedir(dp);
 	
 	return retval;
 }
+
+/*string Reader::get_content(string filePath){
+	ifstream fin;
+
+	fin.open(filePath);
+
+	fin.close();
+}*/
 
 void Reader::print_map(map<string, string> local_map) {
 	for (map<string, string>::iterator outer_iter = local_map.begin(); outer_iter != local_map.end(); ++outer_iter) {
