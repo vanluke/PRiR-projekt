@@ -1,6 +1,7 @@
 // Prir.cpp : Defines the entry point for the console application.
 //
 
+#include "config.h"
 #include <mpi.h>
 #include <iostream>
 #include <fstream>
@@ -30,7 +31,7 @@ int main(int argc, char* argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &processId);
 
 	/* deklaracja typu dla struktury */
-	int blocklengths[3] = {20,100,50};
+	int blocklengths[3] = {DLUGOSC_FRAZY,ROZMIAR_BLOKU,50};
 	MPI_Datatype strukturaTypy[3] = { MPI_CHAR, MPI_CHAR, MPI_CHAR };
 	MPI_Datatype MPI_SearchInfo;
 	MPI_Aint offsets[3];
