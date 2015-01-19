@@ -1,6 +1,3 @@
-// Prir.cpp : Defines the entry point for the console application.
-//
-
 #include "config.h"
 #include <mpi.h>
 #include <iostream>
@@ -20,6 +17,9 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+<<<<<<< HEAD
+
+=======
 	string pattern = "plik";
 	unsigned int packSize = 10;
 	count = pattern.length();
@@ -28,6 +28,7 @@ int main(int argc, char* argv[])
 		packSize = pattern.length()*2; 
 	}
 	
+>>>>>>> ad3f8d445b8664a24400d6f911d6ba8193a39763
 	MPI_Init(&argc, &argv);
 	int processId;
 
@@ -49,11 +50,26 @@ int main(int argc, char* argv[])
 	double t1 = 0.0, t2 = 0.0;
 
 	if(processId==0){
+		if(argc!=3){
+			cout << "Nieprawidłowa liczba atrybutów. Podaj 2 atrybuty." << endl << endl;
+			cout << "Sposób wywołania: mpirun -n <n> ./prir <dir> <pattern>" << endl << endl;
+			cout << "gdzie:" << endl;
+			cout << "    <n> - liczba procesów" << endl;
+			cout << "    <dir> - ścieżka do folderu zawierającego pliki do przeszukania" << endl;
+			cout << "    <pattern> - fraza do znalezienia" << endl << endl;
+			cout << "np. mpirun -n 5 ./prir ./pliki fraza" << endl << endl;
+
+			return 0;
+		}
+
+		string pattern = argv[2];
+		string dir = argv[1];
+
 		Reader reader;
 		map<string, string> retval;
 
 		try {
-			retval = reader.read_files("./pliki");
+			retval = reader.read_files(dir);
 		}
 		catch (...) {
 			cout << "Error" << endl;
@@ -62,7 +78,7 @@ int main(int argc, char* argv[])
 		Search search;
 		search.SetMpiStructInfo(&MPI_SearchInfo);
 		search.SetPattern(pattern);
-		search.SetPackSize(packSize);
+		search.SetPackSize(ROZMIAR_BLOKU);
 		search.SetFileList(retval);
 		t1 = MPI_Wtime();
 		search.Run();
