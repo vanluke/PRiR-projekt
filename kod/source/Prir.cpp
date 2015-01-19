@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <math.h>
 #include <dirent.h>
 #include <cstddef>
 #include "Reader.h"
@@ -41,6 +42,8 @@ int main(int argc, char* argv[])
 	MPI_Type_create_struct(3, blocklengths, offsets, strukturaTypy, &MPI_SearchInfo);
 	MPI_Type_commit(&MPI_SearchInfo);
 
+	double t1 = 0.0, t2 = 0.0;
+
 	if(processId==0){
 		Reader reader;
 		map<string, string> retval;
@@ -57,8 +60,10 @@ int main(int argc, char* argv[])
 		search.SetPattern(pattern);
 		search.SetPackSize(packSize);
 		search.SetFileList(retval);
-
+		t1 = MPI_Wtime();
 		search.Run();
+		t2 = MPI_Wtime();
+		cout << "Czas: " << fabs(t2 - t1) * 1000 << "[ms]" << endl;
 	}
 	else{
 		//pozostałe procesy - nie główny
@@ -68,6 +73,7 @@ int main(int argc, char* argv[])
 	}
 
 	MPI_Finalize();
+	
 //	reader.print_map(retval);
 
 
