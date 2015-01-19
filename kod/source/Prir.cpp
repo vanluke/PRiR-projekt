@@ -13,16 +13,29 @@
 
 using namespace std;
 
+
+
 int main(int argc, char* argv[])
 {
+<<<<<<< HEAD
 
+=======
+	string pattern = "plik";
+	unsigned int packSize = 10;
+	count = pattern.length();
+	if (pattern.length() > packSize)
+	{ 
+		packSize = pattern.length()*2; 
+	}
+	
+>>>>>>> ad3f8d445b8664a24400d6f911d6ba8193a39763
 	MPI_Init(&argc, &argv);
 	int processId;
 
 	MPI_Comm_rank(MPI_COMM_WORLD, &processId);
-
+	count << "count : " << endl;
 	/* deklaracja typu dla struktury */
-	int blocklengths[3] = {DLUGOSC_FRAZY,ROZMIAR_BLOKU,50};
+	int blocklengths[3] = {count,ROZMIAR_BLOKU,50};
 	MPI_Datatype strukturaTypy[3] = { MPI_CHAR, MPI_CHAR, MPI_CHAR };
 	MPI_Datatype MPI_SearchInfo;
 	MPI_Aint offsets[3];
