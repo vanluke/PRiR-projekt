@@ -55,8 +55,11 @@ void Search::Run(){
 			for(unsigned int i=overlapSize; i<packSize; i++){
 				pack[i] = packTemp[i-overlapSize];
 			}
+
 			SendToProcess(pattern, pack, it->second);
 		}
+
+		file.close();
 	}
 	
 	SendBreakInfo();
@@ -76,7 +79,7 @@ void Search::ResetProcessesInfo(){
 
 void Search::SendToProcess(string pattern, string text, string fileName){
 	SearchInfo sInfo;
-	
+
 	strcpy(sInfo.pattern, pattern.c_str());
 	strcpy(sInfo.text, text.c_str());
 	strcpy(sInfo.fileName, fileName.c_str());
