@@ -85,17 +85,17 @@ void Search::SendToProcess(string pattern, string text, string fileName){
 	freeProcess[processNumber] = false;
 	numOfFreeProcesses--;
 
-	cout << "wysylamy fragment: " << sInfo.text << ", " << sInfo.fileName;
+	//cout << "wysylamy fragment: " << sInfo.text << ", " << sInfo.fileName;
 	
 	MPI_Send(&sInfo, 1, *MPI_SearchInfo, processNumber, 0, MPI_COMM_WORLD);
 
-	cout << "Pozostało wolnych procesów: " << numOfFreeProcesses << endl;
+	//cout << "Pozostało wolnych procesów: " << numOfFreeProcesses << endl;
 	
 	//jesli nie ma juz wiecej wolnych procesoo w tym miejscu czekamy na wolny, do ktorego mozemy wyslac
 	if(numOfFreeProcesses==0){
 		MPI_Recv(&processNumber, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
 		
-		cout << "Proces główny dostał informację o zwolnieniu procesu" << processNumber << endl;
+		//cout << "Proces główny dostał informację o zwolnieniu procesu" << processNumber << endl;
 		
 		freeProcess[processNumber] = true;
 		numOfFreeProcesses++;
@@ -135,19 +135,18 @@ void Search::Wait(){
 		MPI_Recv(&sInfo, 1, *MPI_SearchInfo, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
 		
 		if(sInfo.pattern[0] == 0){
-			cout << "Proces " << processNumber << "konczy działanie" << endl;
+			//cout << "Proces " << processNumber << "konczy działanie" << endl;
 			break;
 		}
 		
-		cout << "Proces " << processNumber << "przetwarza fragment" << sInfo.text << endl;
-
 		KarpRabin karp;
 		int q = 101;
 		int alfabeath = 256;
 		int value = karp.karp_rabin(sInfo.pattern, sInfo.text, q, alfabeath);
 		
-		cout << "wyniki znajdowania " << value << endl;
-		
+		if(value>0){
+			cout << "Fraza znaleziona w pliku: " << sInfo.fileName << endl;
+		}
 		MPI_Send(&processNumber, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
 	}
 }
